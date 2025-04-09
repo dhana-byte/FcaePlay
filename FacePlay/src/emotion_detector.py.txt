@@ -1,0 +1,33 @@
+# src/emotion_detector.py
+
+import cv2
+import time
+from deepface import DeepFace
+from globals import *
+
+def detect_emotion():
+    global difficulty_level, game_running, current_mood
+    cap = cv2.VideoCapture(0)
+
+    while game_running:
+        ret, frame = cap.read()
+        if not ret:
+            continue
+        try:
+            result = DeepFace.analyze(frame, actions=['emotion'], enforce_detection=False)
+            emotion = result[0]['dominant_emotion']
+            current_mood = emotion.capitalize()
+            print("[EMOTION]", current_mood)
+
+            if emotion == "happy":
+                difficulty_level = 3
+            elif emotion in ["sad", "fear", "disgust", "angry"]:
+                difficulty_level = 1
+            else:
+                difficulty_level = 2
+        except Exception:
+            current_mood = "Neutral"
+            difficulty_level = 2
+        time.sleep(10)
+
+    cap.release()
