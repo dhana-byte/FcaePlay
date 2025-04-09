@@ -28,3 +28,4 @@ Using **DeepFace** (a powerful facial analysis framework), the game reads your e
 
 ## 🗂 Project Structure
 
+faceplay/ ├── assets/ │ └── jet.png # Jet image ├── src/ │ ├── main.py # Game loop and Pygame window │ ├── emotion_detector.py # DeepFace-based emotion detection │ ├── game_engine.py # Game mechanics and logic │ └── globals.py # Shared game variables ├── requirements.txt # Python dependencies ├── README.md # You're here!
