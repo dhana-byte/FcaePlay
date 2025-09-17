@@ -31,3 +31,4 @@ def detect_emotion():
         time.sleep(10)
 
     cap.release()
+
